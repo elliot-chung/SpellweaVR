@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpellOrigin : MonoBehaviour
 {
     public Rigidbody MagicBoltPrefab;
+    public LineRenderer TeleportSpellPrefab;
+
     private static Dictionary<List<int>, string> spellDictionary = new Dictionary<List<int>, string>(new ListEqualityComparator())
     {
         {new List<int>{5, 1, 2},  "Magic Bolt"},
@@ -15,14 +17,15 @@ public class SpellOrigin : MonoBehaviour
         {new List<int>{5, 4, 3, 2, 1},  "Telekinesis"},
     };
 
-    private string spellName;
-    private bool spellActive;
+    private LineRenderer _teleIndicator;
+    private string _spellName;
+    private bool _spellActive;
     
     // Start is called before the first frame update
     void Start()
     {
-        spellName = "";
-        spellActive = false;
+        _spellName = "";
+        _spellActive = false;
     }
 
     // Update is called once per frame
@@ -33,17 +36,18 @@ public class SpellOrigin : MonoBehaviour
 
     private void ActivateCurrentSpell()
     {
-        if (spellName == "Magic Bolt")
+        _spellActive = true;
+        if (_spellName == "Magic Bolt")
         {
 
             Rigidbody bolt = Instantiate(MagicBoltPrefab, transform.position, Quaternion.identity);
             bolt.velocity = transform.forward;
         }
-        else if (spellName == "Teleport")
+        else if (_spellName == "Teleport")
         {
-
+            _teleIndicator = Instantiate(TeleportSpellPrefab, transform);
         }
-        else if (spellName == "Telekinesis")
+        else if (_spellName == "Telekinesis")
         {
 
         }
@@ -51,15 +55,19 @@ public class SpellOrigin : MonoBehaviour
 
     private void DeactivateCurrentSpell()
     {
-        if (spellName == "Magic Bolt")
+        _spellActive = false;
+        if (_spellName == "Magic Bolt")
         {
 
         }
-        else if (spellName == "Teleport")
+        else if (_spellName == "Teleport")
         {
-
+            RaycastHit hit = _teleIndicator.GetComponent<SpellRaycast>().GetHitPosition();
+            Destroy(_teleIndicator);
+            Debug.Log("DESTORYING TP INDICATOR");
+            Debug.Log(hit);
         }
-        else if (spellName == "Telekinesis")
+        else if (_spellName == "Telekinesis")
         {
 
         }
@@ -67,12 +75,12 @@ public class SpellOrigin : MonoBehaviour
 
     public void SetSpell(List<int> spellCode)
     {
-        spellName = spellDictionary.GetValueOrDefault(spellCode, spellName);
+        _spellName = spellDictionary.GetValueOrDefault(spellCode, _spellName);
     }
 
     public void SetSpellActive(bool toggle)
     {   
-        if (spellActive == toggle) { return; }
+        if (_spellActive == toggle) { return; }
         if (toggle) // Turning spell on
         {
             ActivateCurrentSpell();
