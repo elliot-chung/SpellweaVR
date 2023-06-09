@@ -29,6 +29,7 @@ public class InputHandlingScript : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
         {
+            rightSpellOrigin.GetComponent<SpellOrigin>().InitiateCasting();
             currentSpellcastingRig = Instantiate(spellcastingRig, rightHandAnchor.transform.position, rightHandAnchor.transform.rotation);
             currentSpellcastingRig.transform.forward = rightHandAnchor.transform.position - centerEyeAnchor.transform.position;
         }

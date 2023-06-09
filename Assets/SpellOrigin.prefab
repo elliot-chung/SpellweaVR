@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MagicBoltPrefab: {fileID: 1905305511740755929, guid: 9ac2f584d9f63214aa30e960231a3149, type: 3}
+  TeleportSpellPrefab: {fileID: 4986461956286798757, guid: 971c93c0797540443acd3599513d8176, type: 3}
+  TelekinesisSpellPrefab: {fileID: 4986461956286798757, guid: 685bbe3fd1741714bb60f36d62899f48, type: 3}
+  PlayerCharacter: {fileID: 0}

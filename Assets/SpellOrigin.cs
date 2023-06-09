@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpellOrigin : MonoBehaviour
 {
     public Rigidbody MagicBoltPrefab;
     public LineRenderer TeleportSpellPrefab;
+    public LineRenderer TelekinesisSpellPrefab;
+    public GameObject PlayerCharacter;
 
     private static Dictionary<List<int>, string> spellDictionary = new Dictionary<List<int>, string>(new ListEqualityComparator())
     {
@@ -18,6 +21,7 @@ public class SpellOrigin : MonoBehaviour
     };
 
     private LineRenderer _teleIndicator;
+    private LineRenderer _telekinesisIndicator;
     private string _spellName;
     private bool _spellActive;
     
@@ -39,9 +43,7 @@ public class SpellOrigin : MonoBehaviour
         _spellActive = true;
         if (_spellName == "Magic Bolt")
         {
-
-            Rigidbody bolt = Instantiate(MagicBoltPrefab, transform.position, Quaternion.identity);
-            bolt.velocity = transform.forward;
+            Instantiate(MagicBoltPrefab, transform.position, transform.rotation);
         }
         else if (_spellName == "Teleport")
         {
@@ -49,7 +51,7 @@ public class SpellOrigin : MonoBehaviour
         }
         else if (_spellName == "Telekinesis")
         {
-
+            _telekinesisIndicator.GetComponent<TelekinesisSpellScript>().EnableGrab();
         }
     }
 
@@ -62,20 +64,34 @@ public class SpellOrigin : MonoBehaviour
         }
         else if (_spellName == "Teleport")
         {
-            RaycastHit hit = _teleIndicator.GetComponent<SpellRaycast>().GetHitPosition();
+            Vector3 new_pos;
+            if (_teleIndicator.GetComponent<TeleportSpellScript>().InitiateTeleport(out new_pos))
+            {
+                PlayerCharacter.transform.position = new_pos;
+            }
             Destroy(_teleIndicator);
-            Debug.Log("DESTORYING TP INDICATOR");
-            Debug.Log(hit);
         }
         else if (_spellName == "Telekinesis")
         {
+            _telekinesisIndicator.GetComponent<TelekinesisSpellScript>().DisableGrab();
+        }
+    }
 
+    public void InitiateCasting()
+    {
+        if (_spellName == "Telekinesis")
+        {
+            Destroy(_telekinesisIndicator);
         }
     }
 
     public void SetSpell(List<int> spellCode)
     {
         _spellName = spellDictionary.GetValueOrDefault(spellCode, _spellName);
+        if (_spellName == "Telekinesis")
+        {
+            _telekinesisIndicator = Instantiate(TelekinesisSpellPrefab, transform);
+        }
     }
 
     public void SetSpellActive(bool toggle)

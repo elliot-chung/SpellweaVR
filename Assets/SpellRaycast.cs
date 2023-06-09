@@ -14,8 +14,7 @@ public class SpellRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Vector3 to = transform.TransformDirection(Vector3.forward) * RAY_LENGTH;
-        // GetComponent<LineRenderer>().SetPosition(1, to);
+ 
     }
 
     public RaycastHit GetHitPosition()

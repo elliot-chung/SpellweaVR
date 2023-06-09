@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1397912890877929242}
   - component: {fileID: 4986461956286798757}
   - component: {fileID: 8531537938099326423}
-  - component: {fileID: 1249295095567713264}
+  - component: {fileID: 7465675913295931227}
   m_Layer: 0
-  m_Name: TeleportSpell
+  m_Name: TelekinesisSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af87eae9f33574a4d9f9e3f9b1cbd2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1249295095567713264
+--- !u!114 &7465675913295931227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,6 +154,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4560921203355663067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2470a6cb7c6ce2f409ae44ab3592e6b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 279d3b12fe850834f9b28f881af53553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
