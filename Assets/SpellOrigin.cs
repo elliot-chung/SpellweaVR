@@ -24,12 +24,14 @@ public class SpellOrigin : MonoBehaviour
     private LineRenderer _telekinesisIndicator;
     private string _spellName;
     private bool _spellActive;
+    private GameObject _spellCurrentIndicator;
     
     // Start is called before the first frame update
     void Start()
     {
         _spellName = "";
         _spellActive = false;
+        _spellCurrentIndicator = GameObject.Find("IndicatorActiveSpell");
     }
 
     // Update is called once per frame
@@ -79,6 +81,7 @@ public class SpellOrigin : MonoBehaviour
 
     public void InitiateCasting()
     {
+        SetSpellActive(false);
         if (_spellName == "Telekinesis")
         {
             Destroy(_telekinesisIndicator);
@@ -87,11 +90,18 @@ public class SpellOrigin : MonoBehaviour
 
     public void SetSpell(List<int> spellCode)
     {
-        _spellName = spellDictionary.GetValueOrDefault(spellCode, _spellName);
-        if (_spellName == "Telekinesis")
+        
+        if (!_spellActive)
         {
-            _telekinesisIndicator = Instantiate(TelekinesisSpellPrefab, transform);
+            _spellName = spellDictionary.GetValueOrDefault(spellCode, _spellName);
+            if (_spellName == "Telekinesis")
+            {
+                _telekinesisIndicator = Instantiate(TelekinesisSpellPrefab, transform);
+            }
+
+            _spellCurrentIndicator.GetComponent<IndicatorActiveSpell>().setCurrentlyActiveSpell(_spellName);
         }
+
     }
 
     public void SetSpellActive(bool toggle)
