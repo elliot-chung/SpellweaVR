@@ -16,4 +16,17 @@ public class MagicBoltScript : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision != null)
+        {
+            if (collision.collider.gameObject.CompareTag("Enemy") && collision.collider.gameObject.GetComponent<HealthObject>() != null)
+            {
+                collision.collider.gameObject.GetComponent<HealthObject>().ChangeHealth(-20);
+                Debug.Log("Damaged object " + collision.collider.gameObject.name + " for 20");
+            }
+        }
+        Destroy(gameObject);
+    }
 }
