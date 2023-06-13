@@ -18,6 +18,6 @@ public class MenuSceneManagerScript : MonoBehaviour
     }
 
     public void EnterGame(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainArena");
     }
 }

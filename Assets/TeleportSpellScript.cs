@@ -25,6 +25,7 @@ public class TeleportSpellScript : MonoBehaviour
             pos = Vector3.zero;
             return false; 
         }
+        Debug.Log(rayHit.point);
         NavMeshHit navHit;
         if (NavMesh.SamplePosition(rayHit.point, out navHit, 1.0f, NavMesh.AllAreas))
         {

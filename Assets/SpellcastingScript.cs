@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SpellcastingScript : MonoBehaviour
 {
+    public AudioClip Tone1;
+    public AudioClip Tone2;
+    public AudioClip Tone3;
+    public AudioClip Tone4;
+    public AudioClip Tone5;
+
     private List<int> order;
     private LineRenderer lineRenderer;
     public Material material;
@@ -32,6 +38,15 @@ public class SpellcastingScript : MonoBehaviour
             order.Add(pointNum);
             lineRenderer.positionCount = order.Count;
             lineRenderer.SetPosition(order.Count - 1, positionOfPoint);
+
+            AudioClip clip = Tone1;
+            if (pointNum == 1) clip = Tone1;
+            if (pointNum == 2) clip = Tone2;
+            if (pointNum == 3) clip = Tone3;
+            if (pointNum == 4) clip = Tone4;
+            if (pointNum == 5) clip = Tone5;
+            AudioSource.PlayClipAtPoint(clip, positionOfPoint);
+
         }
     }
 

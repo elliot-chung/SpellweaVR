@@ -5,23 +5,26 @@ using UnityEngine;
 
 public class HealthObject : MonoBehaviour
 {
-    public int maxHealth = 100;
-    
-    public int currHealth = 100;
-
-    private bool justHit;
+    private bool justHit = false;
     private float hitAnimationTimer;
+
+    public int maxHealth = 100;
+    public int currHealth = 100;
 
     // Start is called before the first frame update
     void Start()
     {
-        justHit = false;
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    public void CheckAnimationFrame()
+    {
         Material mat = GetComponent<Renderer>().material;
         if (justHit)
         {
@@ -43,7 +46,7 @@ public class HealthObject : MonoBehaviour
         }
     }
 
-    public void ChangeHealth(int val)
+    public virtual void ChangeHealth(int val)
     {
         justHit = true;
         currHealth += val;

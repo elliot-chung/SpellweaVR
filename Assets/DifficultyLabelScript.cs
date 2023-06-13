@@ -9,6 +9,7 @@ public class DifficultyLabelScript : MonoBehaviour
     private void Start()
     {
         textbox = GetComponent<TextMeshProUGUI>();
+        PlayerPrefs.SetInt("difficulty", 1);
     }
     public void SetDifficultyLevel(System.Single level)
     {
@@ -24,5 +25,7 @@ public class DifficultyLabelScript : MonoBehaviour
         {
             textbox.text = "Difficulty: Hard";
         }
+
+        PlayerPrefs.SetInt("difficulty", (int) level);
     }
 }

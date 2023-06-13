@@ -610,6 +610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e5476752d1f6e4eb43e8d5e80c9ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tone1: {fileID: 8300000, guid: 3040872767a13164184c2aa417aef999, type: 3}
+  Tone2: {fileID: 8300000, guid: e29dc2596372047499b3a3f36212a543, type: 3}
+  Tone3: {fileID: 8300000, guid: ece463367e90ab14db32d0433df9a66e, type: 3}
+  Tone4: {fileID: 8300000, guid: 099e753dcb918b044b1c7b68b0ffc313, type: 3}
+  Tone5: {fileID: 8300000, guid: c0c16309627b43648b038e567cc99590, type: 3}
   material: {fileID: 2100000, guid: b5e85613472e13c4c8754c7b5e12946c, type: 2}
 --- !u!1 &423901620187115587
 GameObject:
@@ -722,6 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7233e1efabc5b694c8603d7dec6a25d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatToFollow: {fileID: 0}
 --- !u!54 &2236491335574627393
 Rigidbody:
   m_ObjectHideFlags: 0

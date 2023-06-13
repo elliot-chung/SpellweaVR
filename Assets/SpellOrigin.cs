@@ -31,7 +31,7 @@ public class SpellOrigin : MonoBehaviour
     {
         _spellName = "";
         _spellActive = false;
-        _spellCurrentIndicator = GameObject.Find("IndicatorActiveSpell");
+        _spellCurrentIndicator = transform.Find("IndicatorActiveSpell").gameObject;
     }
 
     // Update is called once per frame

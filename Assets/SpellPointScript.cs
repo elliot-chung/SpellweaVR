@@ -20,17 +20,9 @@ public class SpellPointScript : MonoBehaviour
         
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.collider.gameObject.name == "user_point")
-    //    {
-    //        gameObject.GetComponent<Renderer>().material = activeMat;
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "user_point")
+        if (other.gameObject.name == "user_point" && other.transform.IsChildOf(transform.parent))
         {
             gameObject.GetComponent<Renderer>().material = activeMat;
             gameObject.transform.parent.GetComponent<SpellcastingScript>().PointTouched(int.Parse(gameObject.name.Substring(gameObject.name.Length - 1)), gameObject.transform.position);
